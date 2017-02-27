@@ -1,0 +1,6 @@
+# Weather-SMS
+This program texts the user's phone the low and high temperatures that day based on
+the user's schedule. Currently, the user's schedule starting and ending times are part
+of the source code and known at runtime, as this program is designed to be run every
+weekday at 6:00 AM using a cronjob. The program also tells the user if there is rain in
+the forecast during the user's schedule.
