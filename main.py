@@ -4,8 +4,8 @@ from datetime import datetime
 
 # Since the api call is made at 6:00 AM, hourly_forecast[0] is 6 AM
 def main():
-    startTimes = [10, 8, 10, 8, 10]
-    endTimes = [19, 15, 13, 19, 13]
+    startTimes = [8, 8, 8, 8, 8]
+    endTimes = [18, 16, 18, 18, 10]
     date = datetime.today()
     dayOfWeek = date.weekday()
     message = ""
@@ -20,8 +20,7 @@ def main():
             minTempTime = startTimes[dayOfWeek]
             maxTempTime = endTimes[dayOfWeek]
 
-            for j in range(startTimes[dayOfWeek] - 6,
-                           endTimes[dayOfWeek] - 5):
+            for j in range(startTimes[dayOfWeek] - 6, endTimes[dayOfWeek] - 5):
                 if ("Rain" in hourly_forecast[j]['condition']):
                     message += "Rain forecasted at " + str(j % 12) + ":00. "
                 if (int(hourly_forecast[j]['temp']['english']) < minTemp):
@@ -31,12 +30,12 @@ def main():
                     maxTemp = int(hourly_forecast[j]['temp']['english'])
                     maxTempTime = j + 6
 
-    message += "Min temp today is " + str(minTemp % 12) + " at " \
+    message += "Min temp today is " + str(minTemp) + " at " \
             + str(minTempTime) + ":00. "
-    message += "Max temp today is " + str(maxTemp % 12) + " at " \
+    message += "Max temp today is " + str(maxTemp) + " at " \
             + str(maxTempTime) + ":00. "
     #print(message)
-    send_sms.send_message(phone_number, message)    
+    send_sms.send_message(phone_number, message)
     # checked hours should depend on day of the week
 
 if __name__ == '__main__':
